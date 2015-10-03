@@ -10,8 +10,9 @@ if ($fh) {
     $total = 0;
 
     while (($line = fgets($fh)) !== false) {
-        if (1 === preg_match('/^.+ "(.+)" .+$/', $line, $match)) {
-            $request = $match[1];
+        if (1 === preg_match('/^.+ (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) .+ "(.+)" .+$/', $line, $match)) {
+            $ip = $match[1];
+            $request = $match[2];
 
             $stats[$request] = isset($stats[$request]) ?
                 $stats[$request] + 1 :
